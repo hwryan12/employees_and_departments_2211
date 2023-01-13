@@ -21,27 +21,34 @@ RSpec.describe Budget do
       expect(budget.year).to eq("2023")
     end
 
-    it "has a list of departments that are empty by default" do
+    it "has a list of departments that are an empty array by default" do
       expect(budget.departments).to eq([])
     end
   end
 
-  describe "#list_dept_by_expenses" do
-    it "can add departments to departments array" do
+  describe "#add_departments" do
+    it "can add a department to departments array" do
       budget.add_department(dot)
       budget.add_department(p_and_r)
 
       expect(budget.departments).to eq([dot, p_and_r])
     end
+  end
 
-    it "can list the departments with expenses less than the given amount (the argument)" do
+  describe "list_dept_by_expenses" do
+    it "can list the departments with expenses less than the given amount (arguments)" do
       budget.add_department(dot)
       budget.add_department(p_and_r)
 
-      dot.expense(6000)
-      p_and_r.expense(400)
+      dot.expense("Jeremy Jamm", 6000)
+      p_and_r.expense("Leslie Knope", 400)
     
       expect(budget.list_dept_by_expenses("$500")).to eq([p_and_r])
+
+      dot.expense("Jeremy Jamm", 4320840)
+      p_and_r.expense("Leslie Knope", 1000000)
+
+      expect(budget.list_dept_by_expenses("$500")).to eq([])
     end
   end
 

@@ -3,6 +3,9 @@ require './lib/employee'
 
 RSpec.describe Department do
   let(:customer_service) { Department.new("Customer Service") }
+  let(:bobbi) { Employee.new({name: "Bobbi Jaeger", age: "30", salary: "100000"}) }
+  let(:aaron) { Employee.new({name: "Aaron Tanaka", age: "25", salary: "90000"}) }
+  
   describe '#initialize' do
     it 'exists' do
   
@@ -17,9 +20,6 @@ RSpec.describe Department do
 
   describe "#hire" do
     it "can hire an employee and return as an array" do
-      bobbi = Employee.new({name: "Bobbi Jaeger", age: "30", salary: "100000"})
-      aaron = Employee.new({name: "Aaron Tanaka", age: "25", salary: "90000"}) 
-
       customer_service.hire(bobbi)
       customer_service.hire(aaron)  
       
@@ -32,7 +32,7 @@ RSpec.describe Department do
       expect(customer_service.expenses).to eq(0)
     end
 
-    it "can incramently increase the amount of expenses" do
+    it "can incrementally increase the expenses amount" do
       customer_service.expense("Bobbi Jaeger", 100)
       customer_service.expense("Aaron Tanaka", 25)
       
@@ -46,12 +46,12 @@ RSpec.describe Department do
     end
 
     it "tracks employees with expenses" do
-      bobbi = Employee.new({name: "Bobbi Jaeger", age: "30", salary: "100000"})
-      
       customer_service.hire(bobbi)
+      customer_service.hire(aaron) 
       customer_service.expense("Bobbi Jaeger", 37)
+      customer_service.expense("Aaron Tanaka", 85)
      
-      expect(customer_service.employee_expenses).to eq({"Bobbi Jaeger" => "$37"})
+      expect(customer_service.employee_expenses).to eq({"Aaron Tanaka"=>"$85", "Bobbi Jaeger"=>"$37"})
     end
   end
 end
