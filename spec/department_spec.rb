@@ -33,10 +33,25 @@ RSpec.describe Department do
     end
 
     it "can incramently increase the amount of expenses" do
-      customer_service.expense(100)
-      customer_service.expense(25)
+      customer_service.expense("Bobbi Jaeger", 100)
+      customer_service.expense("Aaron Tanaka", 25)
       
       expect(customer_service.expenses).to eq(125)
+    end
+  end
+
+  describe "#Iteration 4" do
+    it "has an expense_report that is empty by default" do
+      expect(customer_service.expense_report).to eq([])
+    end
+
+    it "tracks employees with expenses" do
+      bobbi = Employee.new({name: "Bobbi Jaeger", age: "30", salary: "100000"})
+      
+      customer_service.hire(bobbi)
+      customer_service.expense("Bobbi Jaeger", 37)
+
+      expect(customer_service.employee_expenses).to eq({"Bobbi Jaeger" => "$37"})
     end
   end
 end
