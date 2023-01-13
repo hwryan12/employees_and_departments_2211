@@ -53,5 +53,17 @@ RSpec.describe Department do
      
       expect(customer_service.employee_expenses).to eq({"Aaron Tanaka"=>"$85", "Bobbi Jaeger"=>"$37"})
     end
+
+    it "Returns all expenses for which a specific employee is responsible" do
+      customer_service.hire(bobbi)
+      customer_service.hire(aaron) 
+      customer_service.expense("Bobbi Jaeger", 37)
+      customer_service.expense("Bobbi Jaeger", 12)
+      customer_service.expense("Aaron Tanaka", 85)
+      customer_service.expense("Aaron Tanaka", 15)
+      customer_service.expense("Aaron Tanaka", 50)
+
+      expect(customer_service.total_employee_expenses).to eq({"Aaron Tanaka"=>"$150", "Bobbi Jaeger"=>"$49"})
+    end
   end
 end

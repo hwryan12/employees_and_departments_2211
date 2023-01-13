@@ -23,4 +23,17 @@ class Department
   def employee_expenses
     @expense_report.to_h
   end
+
+  def total_employee_expenses
+    totaled_exepenses = @expense_report.group_by(&:shift).map(&:flatten)
+    employee_names = []
+    totaled_exepenses.each { |expense| employee_names << expense.first }
+    expense_amounts = []
+    totaled_exepenses.each do |expense|
+      amounts = expense.drop(1)
+      expense_amounts << amounts
+    end
+    expense_amounts.
+    # require "pry"; binding.pry
+  end
 end
