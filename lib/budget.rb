@@ -18,4 +18,17 @@ class Budget
     end
     depts
   end
+
+  def list_employee_salary
+    employees_by_department = []
+    @departments.each do |department|
+      employees_by_department << department.employees
+    end
+    all_employees = employees_by_department.flatten
+    employees_and_salaries = Hash.new
+    all_employees.each do |employee|
+      employees_and_salaries[employee.name] = employee.salary.to_s.prepend('$')
+    end
+    employees_and_salaries
+  end
 end
