@@ -31,5 +31,12 @@ RSpec.describe Department do
     it "has zero expenses as default" do
       expect(customer_service.expenses).to eq(0)
     end
+
+    it "can incramently increase the amount of expenses" do
+      customer_service.expense(100)
+      customer_service.expense(25)
+      
+      expect(customer_service.expenses).to eq(125)
+    end
   end
 end
