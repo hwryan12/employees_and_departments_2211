@@ -17,11 +17,10 @@ class Department
 
   def expense(employee, amount)
     @expenses = @expenses + amount
-    expense_report = [employee, amount.to_s.prepend('$')]
-    # require "pry"; binding.pry
+    @expense_report << [employee, amount.to_s.prepend('$')]
   end
-
+  
   def employee_expenses
-    list_employee_expenses = Hash.new(0)
+    @expense_report.to_h
   end
 end

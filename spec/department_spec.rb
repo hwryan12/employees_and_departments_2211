@@ -50,7 +50,7 @@ RSpec.describe Department do
       
       customer_service.hire(bobbi)
       customer_service.expense("Bobbi Jaeger", 37)
-
+     
       expect(customer_service.employee_expenses).to eq({"Bobbi Jaeger" => "$37"})
     end
   end
