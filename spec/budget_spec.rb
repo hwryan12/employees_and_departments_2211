@@ -10,5 +10,9 @@ RSpec.describe Budget do
       
       expect(budget).to be_a(Budget)
     end
+
+    it "has a readable attribute" do
+      expect(budget.year).to eq("2023")
+    end
   end
 end
