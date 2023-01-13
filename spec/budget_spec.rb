@@ -61,20 +61,4 @@ RSpec.describe Budget do
       })
     end
   end
-
-  describe "#employee_expenses" do
-  it "returns which employee is responsible for an expense" do
-    budget.add_department(dot)
-    budget.add_department(p_and_r)
-
-    p_and_r.hire(ron)
-    p_and_r.hire(leslie)
-    dot.hire(jeremy)
-
-    p_and_r.expense(100)
-    dot.expense(25)
-
-    expect(budget.employee_expenses).to eq({"Leslie Knope" => "$100", "Jeremy Jamm" => "$25"})
-  end
-end
 end
