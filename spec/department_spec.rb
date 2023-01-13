@@ -26,4 +26,10 @@ RSpec.describe Department do
       expect(customer_service.employees).to eq([bobbi, aaron])
     end
   end
+
+  describe "#expenses" do
+    it "has zero expenses as default" do
+      expect(customer_service.expenses).to eq(0)
+    end
+  end
 end
