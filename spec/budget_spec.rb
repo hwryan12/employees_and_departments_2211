@@ -29,5 +29,15 @@ RSpec.describe Budget do
 
       expect(budget.departments).to eq([dot, p_and_r])
     end
+
+    it "can list the departments with expenses less than the given amount (the argument)" do
+      budget.add_department(dot)
+      budget.add_department(p_and_r)
+
+      dot.expense(6000)
+      p_and_r.expense(400)
+    
+      expect(budget.list_dept_by_expenses("$500")).to eq([p_and_r])
+    end
   end
 end

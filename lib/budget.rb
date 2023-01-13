@@ -10,4 +10,12 @@ class Budget
   def add_department(department)
     @departments << department
   end
+
+  def list_dept_by_expenses(expense)
+    depts = []
+    @departments.each do |department|
+      depts << department if department.expenses < expense.tr('$', '').to_i
+    end
+    depts
+  end
 end
